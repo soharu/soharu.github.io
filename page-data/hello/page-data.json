@@ -1,0 +1,1 @@
+{"componentChunkName":"component---src-templates-note-js","path":"/hello/","webpackCompilationHash":"","result":{"errors":[{"message":"Cannot query field \"date\" on type \"MdxFrontmatter\".","locations":[{"line":9,"column":7}]}],"pageContext":{"isCreatedByStatefulCreatePages":false,"id":"6fa9e857-5fad-54b7-abba-a6e91207cc43"}}}
