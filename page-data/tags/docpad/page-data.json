@@ -1,1 +1,0 @@
-{"componentChunkName":"component---src-templates-tags-js","path":"/tags/docpad/","webpackCompilationHash":"668567231cfd929969f4","result":{"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"fields":{"slug":"/posts/2017-10-03-jekyll-to-docpad/"},"frontmatter":{"title":"Jekyll to DocPad"}}}]}},"pageContext":{"isCreatedByStatefulCreatePages":false,"tag":"docpad"}}}
