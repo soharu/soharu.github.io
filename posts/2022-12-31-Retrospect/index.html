@@ -47,41 +47,61 @@ data-styled.g15[id="blog-post__PostTagList-sc-10ytstg-3"]{content:"kvgOnc,"}/*!s
 data-styled.g16[id="blog-post__PostNav-sc-10ytstg-4"]{content:"fUJZKo,"}/*!sc*/
 .jHGbsb{margin:0 0 0.2rem 0;padding:0.5rem;background-color:#f2f2f2;font-size:0.8rem;border-radius:0.3rem;}/*!sc*/
 data-styled.g17[id="blog-post__PostNavItemWrapper-sc-10ytstg-5"]{content:"jHGbsb,"}/*!sc*/
-</style></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><header class="header__HeaderWrapper-sc-uf9zlk-0 jVkefD"><div class="header__SiteInfo-sc-uf9zlk-1 evnZVq"><h1 class="header__SiteTitle-sc-uf9zlk-2 bVWwHe"><a href="/">하루의 기록</a></h1><p class="header__SiteDescription-sc-uf9zlk-3 duAHii">소프트웨어 개발과 독서와 이런 저런 관심사 늘어놓기</p></div><div class="site-menu__ContentWrapper-sc-1who3lo-0 jnIlv"><ul class="site-menu__List-sc-1who3lo-1 eeitcZ"><li class="site-menu__InlineListItem-sc-1who3lo-2 lftAZt"><a href="/about/">누구</a></li><li class="site-menu__InlineListItem-sc-1who3lo-2 lftAZt"><a href="/">최신 글</a></li><li class="site-menu__InlineListItem-sc-1who3lo-2 lftAZt"><a href="/posts/">모든 글</a></li><li class="site-menu__InlineListItem-sc-1who3lo-2 lftAZt"><a href="/tags/">태그</a></li></ul></div></header><div class="layout__ContentWrapper-sc-1jczwjl-0 dlFLLb"><main><h2 class="blog-post__PostTitle-sc-10ytstg-0 dsOaog">Github Pages로 블로그 배포하기</h2><div class="blog-post__PostMetaList-sc-10ytstg-2 dsdDTo"><div class="post-meta-item__ContentWrapper-sc-1jpwhy6-0 dzAByB"><span role="img" aria-label="Date">🗓</span> 2019년 09월 18일</div> · <div class="post-meta-item__ContentWrapper-sc-1jpwhy6-0 dzAByB"><span role="img" aria-label="timeToRead">⏱</span> 2 분</div></div><section class="blog-post__PostSection-sc-10ytstg-1 AllPN"><p><a href="https://soharu.github.io/posts/2014-01-25-first-step/">처음 Jekyll로 블로그를 만들었을 때는</a> 공개 저장소인 <a href="https://github.com/soharu/soharu.github.io">soharu.github.io</a>로 블로그를 호스팅했다.</p>
-<p><a href="https://soharu.github.io/posts/2017-10-03-jekyll-to-docpad/">DocPad로 이전했을 때는</a> 별도 저장소를 두고 <a href="https://www.npmjs.com/package/gh-pages">gh-pages</a>를 이용하여 생성된 파일을 <a href="https://github.com/soharu/soharu.github.io">soharu.github.io</a>로 배포하였다. Jekyll 처럼 정적 페이지를 생성하는데 GitHub의 직접적인 지원을 받을 수 없기 때문에 별도 배포 과정이 필요했던 것 같다.</p>
-<p>때문에 자연스럽게 블로그의 소스 저장소와 배포 저장소를 분리하게 되었는데 이때 블로그의 소스 저장소는 비공개로 두었다. 덕분에 비공개 저장소에서 맘 편하게 블로그 디자인을 개선하거나 블로그 초안을 작성하고 내용을 다듬어 적절한 시점에 배포하는 것이 가능했다</p>
-<p>물론 초안 기능을 <a href="https://jekyllrb-ko.github.io/docs/drafts/">Jekyll도 제공</a>하지만 공개 저장소에 있으면 저장소로 직접 들어와서 볼 수 있다. 비공개 저장소를 GitHub Pages로 퍼블리싱하는 것도 가능하지만 <a href="https://help.github.com/en/articles/githubs-products#github-pro">돈이 든다</a>.</p>
-<p>Gatsby에서도 DocPad와 마찬가지로 gh-pages를 이용하여 사이트를 배포하기 때문에 분리된 저장소로 관리하는 이점을 누릴 수 있다.</p>
-<p><a href="https://www.gatsbyjs.org/docs/how-gatsby-works-with-github-pages/">How Gatsby Works with GitHub Pages</a>를 보면 GitHub Pages 옵션에 따라 deploy 명령을 설정하는 방법이 나와있다.</p>
-<p>다만 해당 문서에서는 블로그 소스와 생성된 데이터가 같은 저장소에 있는 것을 가정하고 있는데 나는 앞서 말한 바와 같이 소스 저장소(비공개)와 배포 저장소(공개)가 분리되어 있는 상황이었다.</p>
-<p>다행히 gh-pages에서 관련 옵션을 제공하고 있다.</p>
-<div class="gatsby-highlight" data-language="sh"><pre class="language-sh"><code class="language-sh">$ gh-pages --help
-Usage: gh-pages [options]
-
-Options:
-  -V, --version            output the version number
-  -d, --dist &lt;dist&gt;        Base directory for all source files
-  -s, --src &lt;src&gt;          Pattern used to select which files to publish (default: &quot;**/*&quot;)
-  -b, --branch &lt;branch&gt;    Name of the branch you are pushing to (default: &quot;gh-pages&quot;)
-  -e, --dest &lt;dest&gt;        Target directory within the destination branch (relative to the root) (default: &quot;.&quot;)
-  -a, --add                Only add, and never remove existing files
-  -x, --silent             Do not output the repository url
-  -m, --message &lt;message&gt;  commit message (default: &quot;Updates&quot;)
-  -g, --tag &lt;tag&gt;          add tag to commit
-  --git &lt;git&gt;              Path to git executable (default: &quot;git&quot;)
-  -t, --dotfiles           Include dotfiles
-  -r, --repo &lt;repo&gt;        URL of the repository you are pushing to
-  -p, --depth &lt;depth&gt;      depth for clone (default: 1)
-  -o, --remote &lt;name&gt;      The name of the remote (default: &quot;origin&quot;)
-  -u, --user &lt;address&gt;     The name and email of the user (defaults to the git config).  Format is &quot;Your Name &lt;email@example.com&gt;&quot;.
-  -v, --remove &lt;pattern&gt;   Remove files that match the given pattern (ignored if used together with --add). (default: &quot;.&quot;)
-  -n, --no-push            Commit only (with no push)
-  -h, --help               output usage information</code></pre></div>
-<p><code class="language-text">-r</code> 옵션을 이용하여 사이트를 호스팅할 저장소를 지정할 수 있다.</p>
-<p>다음과 같이 <code class="language-text">deploy</code> 명령을 설정하면 원하는 저장소로 블로그 배포가 가능하다.</p>
-<div class="gatsby-code-title">package.json</div>
-<div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
-  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-    <span class="token property">"deploy"</span><span class="token operator">:</span> <span class="token string">"gatsby build &amp;&amp; gh-pages -d public -r git@github.com:soharu/soharu.github.io.git -b master"</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre></div></section><div class="blog-post__PostTagList-sc-10ytstg-3 kvgOnc"><div class="tag-item__ContentWrapper-sc-1i1ci0b-0 jDnbdr"><a href="/tags/housekeeping/">housekeeping</a></div><div class="tag-item__ContentWrapper-sc-1i1ci0b-0 jDnbdr"><a href="/tags/gatsby-js/">GatsbyJS</a></div></div><div class="blog-post__PostNav-sc-10ytstg-4 fUJZKo"><div class="blog-post__PostNavItemWrapper-sc-10ytstg-5 jHGbsb">이전 글<!-- -->: <a href="/posts/2019-09-17-Layout-and-Styling-in-Gatsby/">레이아웃과 스타일링</a></div><div class="blog-post__PostNavItemWrapper-sc-10ytstg-5 jHGbsb">다음 글<!-- -->: <a href="/posts/2019-09-22-Hackathon-for-My-Own-Blog/">내집마련 해커톤 후기</a></div></div></main></div><footer class="footer__ContentWrapper-sc-1j0boyw-0 gDBfVG">© 2014-<!-- -->2025<!-- --> <!-- -->Jahyun Oh<!-- --> / <a href="https://www.gatsbyjs.org">Gatsby</a>로 만듬</footer></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/2019-09-18-Deploying-to-GitHub-Pages/";window.___webpackCompilationHash="05635a47bff23c0ac585";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-1527b9f5e8e5e19728a1.js"],"app":["/app-74d6dd2e8e10974a1aca.js"],"component---src-pages-404-js":["/component---src-pages-404-js-4850ddac9d684ed7c36c.js"],"component---src-pages-about-js":["/component---src-pages-about-js-c25e9c2d626f72dcfb43.js"],"component---src-pages-index-js":["/component---src-pages-index-js-84da1e480ac2b5b5faf6.js"],"component---src-pages-posts-js":["/component---src-pages-posts-js-e3984c14260caaaaff37.js"],"component---src-pages-tags-js":["/component---src-pages-tags-js-ebdca468d6da0190a335.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-9782748f74dd894a080b.js"],"component---src-templates-tags-js":["/component---src-templates-tags-js-8a149e71d7322489310d.js"]};/*]]>*/</script><script src="/polyfill-1527b9f5e8e5e19728a1.js" nomodule=""></script><script src="/app-74d6dd2e8e10974a1aca.js" async=""></script><script src="/framework-de55a608e8b5563940ea.js" async=""></script><script src="/webpack-runtime-27016528fe139595e9f5.js" async=""></script></body></html>
+</style></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><header class="header__HeaderWrapper-sc-uf9zlk-0 jVkefD"><div class="header__SiteInfo-sc-uf9zlk-1 evnZVq"><h1 class="header__SiteTitle-sc-uf9zlk-2 bVWwHe"><a href="/">하루의 기록</a></h1><p class="header__SiteDescription-sc-uf9zlk-3 duAHii">소프트웨어 개발과 독서와 이런 저런 관심사 늘어놓기</p></div><div class="site-menu__ContentWrapper-sc-1who3lo-0 jnIlv"><ul class="site-menu__List-sc-1who3lo-1 eeitcZ"><li class="site-menu__InlineListItem-sc-1who3lo-2 lftAZt"><a href="/about/">누구</a></li><li class="site-menu__InlineListItem-sc-1who3lo-2 lftAZt"><a href="/">최신 글</a></li><li class="site-menu__InlineListItem-sc-1who3lo-2 lftAZt"><a href="/posts/">모든 글</a></li><li class="site-menu__InlineListItem-sc-1who3lo-2 lftAZt"><a href="/tags/">태그</a></li></ul></div></header><div class="layout__ContentWrapper-sc-1jczwjl-0 dlFLLb"><main><h2 class="blog-post__PostTitle-sc-10ytstg-0 dsOaog">2022년 회고</h2><div class="blog-post__PostMetaList-sc-10ytstg-2 dsdDTo"><div class="post-meta-item__ContentWrapper-sc-1jpwhy6-0 dzAByB"><span role="img" aria-label="Date">🗓</span> 2022년 12월 31일</div> · <div class="post-meta-item__ContentWrapper-sc-1jpwhy6-0 dzAByB"><span role="img" aria-label="timeToRead">⏱</span> 5 분</div></div><section class="blog-post__PostSection-sc-10ytstg-1 AllPN"><p>제목은 회고라고 썼지만 2022년에 대한 이런 저런 주절거림</p>
+<h2>소프트웨어 개발</h2>
+<p>지금 회사에서 만족하고 있는 점 중에 하나는 관리 업무 대신 IC(Indivisual Contributor)로서 집중할 수 있는 환경인 것 같다. 고년차가 되면 매니저 패스로 빠지는 게 흔한데 개발자 패스가 나에게 좀 더 맞다고 생각하기 때문이다. 지금은 전 직장에서 팀원이었던 동료가 팀장을 맞고 있는데 그게 딱히 불편하지도 않다. 오히려 지지와 지원을 받고 있다는 느낌을 받을 때가 많은데 그게 무조건적인 믿음 같은 것이 아니라 내가 고민하는 부분을 잘 들어주고 방향성을 함께 고민해주는 부분이 그렇다. 어느 책에서인가 시니어 개발자가 팀장이 되면 그 조직은 시니어 개발자를 잃고 초보 팀장을 얻게 된다고 표현하기도 하던데... 리더십 역할이 더 잘 맞는 사람이 있고 팀원으로서 몫을 하는 게 더 잘 맞는 사람있다고 생각한다.</p>
+<p>그렇다고 마냥 혼자서 내 일만 한 것은 아니고 스터디 모임 운영이라던가 밋업 발표로 프론트엔드 챕터 내 학습을 주도하고, 적극적으로 지식을 전파하려고 노력했다.</p>
+<p>스터디 모임에서는 클린 아키텍처와 소프트웨어 악취를 제거하는 리팩토링를 함께 읽었다. 도서를 가지고 하는 스터디 다 보니까 어떻게 진행하는 것이 효과적일지 고민을 많이 했다. 스터디 '모임'인 만큼 구성원들의 참여를 이끌어내는 것이 중요한다고 생각했기 때문이다.</p>
+<p>초반에 클린 아키텍쳐 같은 경우에는 각자 책을 읽어오고 모임 시간에 내가 한번 요약하고 관련 주제에 대해서 토론하는 방식으로 했는데 가끔 혼자 대화의 지분을 너무 많이 차지하곤했다. 뒤에 이어진 리팩토링 스터디 때에는 이런 부분을 개선해야겠다고 생각했고 구성원들과 내용을 분담해서 발표하고 토론 시간을 길게 가져갔다. 책을 다 끝낸 뒤에는 응용편으로 지원자를 받아서 개발 중인 코드에 대한 리팩토링 경험 혹은 아이디어를 공유하는 시간을 가졌는데 이 때 발표와 토론이 적극적으로 이루어진 경험이 좋았다. 책을 통한 지식 습득이 다가 아니라 현재 업무와 직접적으로 연결해보는 활동이 중요하다는 생각이 들었다.</p>
+<p>밋업 발표는 챕터 구성원들을 대상으로 하는 비교적 가벼운 발표 자리여서 부담없이 지식 공유와 발표 연습의 기회가 되었다. (이런 경험을 쌓아 외부 발표를 할지는 알 수 없다...) 짧은 세션으로 진행되다보니까 다양한 주제를 다뤄볼 수 있는 점도 좋았다. RxJS와 같이 특정 라이브러리에 관한 것이나 이슈의 원인을 파악해서 해결했던 경험, 현재 프로젝트에서 주로 다뤄지는 도메인 지식 등등... 어쩔 때는 그냥 주제만 생각해놓고 발표 신청을 해서 준비하는데 시간에 쫓길 때가 많아 과거의 나를 원망할 때도 있었는데 발표하고 나면 뿌듯한 느낌에 어느덧 발표 중독자가 되어버린듯한다.</p>
+<p>발표 자료를 만들 때 초반에는 프리젠테이션 형식으로 발표했었는데 자료만 보고 내용을 기억해 내기 어려워서 요즘엔 노션에 줄글로 정리하는 방식으로 바꿨는다. 알고 있는 내용을 써내려 가다 보면 좀더 내가 사용하는 언어에 가까워져서 발표할 때도 편하고 기록으로도 남는 점이 좋은 것 같다.</p>
+<h2>운동: 크로스핏</h2>
+<p>현대인들이 느끼는 운동에 대한 부채감. 나도 늘 느끼고 있었는데 더 이상 미루지 말고 뭐라도 해야겠다고 생각하게 된 계기는 나날이 불어가는 체중과 오랜 시간 컴퓨터 작업으로 인한 목과 어깨 통증이었다. 처음에는 목 디스크인가 싶어서 건강 검진 때 경추 CT도 찍었는데 디스크는 아니라고 해서 운동을 해야겠다고 생각했다.</p>
+<p>문제는 무슨 운동을 할 것인가 였는데 재미없는 건 못하는 성격이라 그나마 오래 했던 스쿼시, 테니스, 탁구 같은 라켓 운동을 알아보다가 회사 다니면서 하기에는 근접성이 떨어져서 고민만 하던 차에 마침 회사에 크로스핏 하는 분들이 계셔서 소개를 받고 회사 근처 박스에 드랍인을 하게 되었다.</p>
+<p>처음에 크로스핏 해보려고 한다고 하니까 주변에 하도 힘들다고 겁을 주어서 괜찮을까 싶었는데 다행히 코치님이 초보자에게 맞는 스케일로 운동을 알려주셔서 생각보다 무섭지 않았고 매일 운동이 바뀐다는 점도 재밌어 보여서 첫날 체험하고 바로 등록을 했다.</p>
+<p>초반에는 매일 올라오는 와드(WOD, workout of the day)를 볼 때면 영어로 된 약어가 많아서 대체 무슨 소리인지 암호문을 해독하는 느낌이었는데 이젠 제법 용어에 익숙해져서 대충 알아들을 수 있게 되었다. 하지만 와드가 정말 다양해서 요즘도 가끔 뜻모를 것들이 나오기도 한다.</p>
+<p>크로스핏 초반에는 주 3회를 목표로 했었는데 운동 강도가 높은 날(월, 금)은 빠지지 않으려고 하고 주 4회로 늘리기 시작하니까 그 때 부터 체력이 느는 것이 체감되기 시작했다. 거기다 코로나 걸리고 자가 격리 기간 동안 살이 좀 빠지고 식습관도 좀 바뀌었는데 그게 식단 효과가 있었는지 어느 시점 부터는 체중도 점차 줄기 시작했다. 연말쯤 되니 운동 전후 4kg 정도가 빠져있었다.</p>
+<p>코로나 이후로 더욱더 집순이가 되어 점점 살이 찌는 몸을 보면서 비루한 몸뚱이는 어쩔 수 없고, 어차피 인간에게 중요한 건 뇌에 깃든 영혼 아니가? 라며 자기 위안 삼아왔는데 운동을 하면서 몸이 달라지는 것을 느끼고 더 많은 활력을 얻고 정신적으로도 더 건강한 느낌을 받게 되니 "건강한 신체에 건전한 정신이 깃든다"는 말이 괜한 것이 아니구나 라는 생각이 들었다.</p>
+<p>크로스핏의 좋은 점 중에 하나를 꼽자면 빠른 피드백이 가능한 운동이라는 점일 것이다. 와드는 매일 달라지지만 신체 기능이나 동작성을 높이기 위한 측정 가능한 운동으로 구성되기 때문에 일주일 전, 한 달 전과 비교해서 얼마나 운동이 늘었는지 평가해보는 것이 가능하다. 6lb 월볼이 무거웠는데 이제 10lb 월볼도 가능하네? 같은 식이다. 정성적으로 체력이 늘어난 것 같다는 느낌이 아니라 정량적으로 신체 능력이 향상되는 것을 기록으로 볼 수 있어서 게임에서 경험치 쌓아서 레벨업 하는 것과 비슷한 느낌의 중독성이 있다.</p>
+<p>꾸준히 할 운동을 만나게 된 것이 올해 가장 큰 수확이 아니었나 싶다.</p>
+<h2>사회적 관계</h2>
+<p>회사에서 대부분의 시간을 보내는 만큼 대부분의 사회적 관계를 회사를 통해서 맺게 된다. 지금 다니는 회사가 커지면서 새로운 동료들을 만날 기회도 더 늘었고, 활동적이고 친화력 놓은 동료들이 많다 보니 새로운 활동에 참여할 기회도 늘었다.</p>
+<p>기꺼이 자신의 집에 초대해주는 분들도 있었고, 클라이밍이나 크로스핏 같은 새로운 운동에 도전해보기도 하고, 함께 여행을 가기도 했다. 나는 내향형 인간이라 사람들과 어울리는 일이 에너지를 쓰는 일이라고만 생각했는데 함께 새로운 경험과 추억을 쌓아가는 일은 마냥 에너지를 쓰기만 하는 것은 아니었다.</p>
+<blockquote>
+<p>인간을 바꾸는 방법은 세 가지 뿐이다. 시간을 달리 쓰는 것, 사는 곳을 바꾸는 것, 새로운 사람을 사귀는 것. 이렇게 세 가지 방법이 아니면 인간은 바뀌지 않는다. 새로운 결심을 하는 건 가장 무의미한 행위다. - 오마에 겐이치(일본 경제 학자), 난문쾌답</p>
+</blockquote>
+<p>새로운 사람들을 만나서 시간을 달리 쓰게 되었고 사람들과 어울리는 것을 좀더 좋아하게 된 것 같다. 하지만 이렇게 새로운 사람들과 어울릴 수 있었던 건 이전 부터 나를 지지해주던 관계들 덕분이라고 생각한다. 오랜 친구들와 새로운 친구들 모두에게 감사를.</p>
+<h2>독서</h2>
+<p>기존의 내 독서 스타일은 동시에 여러 권을 읽는 식이었는데 이러니까 책을 다 읽었는지, 어디까지 읽었는지 이전 내용이 뭐였는지 기억이 나지 않는 경우가 비일비재했다.</p>
+<p>올해는 나름 이런 독서 습관을 탈피해보고자 매월 4-5권 정도 읽을 책을 정해두고 읽었다. 도서 목록은 주로 개발서 일부랑 김영하 북클럽 선정도서.</p>
+<p>연말에 권수를 따져보니 그래도 스무 권 이상 읽어서 나름 선방했다 싶다. 김영하 북클럽 도서 중에서는 11권 중에 8권 읽었으니 1/3 정도는 북클럽 도서로</p>
+<ul>
+<li>실격 당한자들을 위한 변론</li>
+<li>세설 (상, 하)</li>
+<li>쥐</li>
+<li>작별인사</li>
+<li>읽지 않은 책에 대해 말하는 법</li>
+<li>H마트에서 울다</li>
+<li>자폐의 거의 모든 역사</li>
+<li>기억의 뇌과학</li>
+</ul>
+<p>읽었고, 개발서는</p>
+<ul>
+<li>프로그래머의 뇌</li>
+<li>클린 아키텍처</li>
+<li>소프트웨어 악취를 제거하는 리팩토링</li>
+<li>소프트웨어 장인</li>
+<li>이펙티브 엔지니어</li>
+</ul>
+<p>그 밖에 생각나는 건</p>
+<ul>
+<li>정리하는 뇌</li>
+<li>물고기는 존재하지 않는다</li>
+<li>우리는 글쓰기를 너무 심각하게 생각하지</li>
+<li>나는 나를 파괴할 권리가 있다</li>
+</ul>
+<p>등등...</p>
+<p>개발서는 주로 출퇴근 지하철에서 나머지 도서들은 보통 주말에 짬짬이 읽었던 것 같다. 출퇴근 시간 독서는 고정 시간을 할당하는 측면에서 좋긴한데 중단되었다 다시 읽을 때 이전 내용을 다시 파악해야하는 불편함이 있다.(장점일 수도?) 양적인 독서는 가능하지만 질적인 독서는 좀 어렵다고 할까. 거기다 책을 읽을 때 한 권을 다 읽고 빨리 다음 책으로 넘어가는 편이라 내용이 빨리 휘발된다. 읽을 때는 이런 저런 생각도 많이 하고 줄도 쳐놓고 하는데 다시 안 보는...</p>
+<p>올해 어느 정도 독서 습관이 자리 잡았다면 내년에는 독서한 내용을 기록하는 습관을 가져보는 걸로 (매년 생각은 하는데 잘 안되는 그것...)</p>
+<hr>
+<p><em>작성 중이 상태로 묵혀버린 글을 2025년이 되어서야 발행해본다. 더 쓰고 싶은 말이 있었는지 채워지지 않은 항목도 몇 가지 있었는데 이제와서 예전 일을 뒤져서 채우기도 번거로워서 삭제했다. (2025년 2월 14일에 붙임)</em></p></section><div class="blog-post__PostTagList-sc-10ytstg-3 kvgOnc"><div class="tag-item__ContentWrapper-sc-1i1ci0b-0 jDnbdr"><a href="/tags/회고/">회고</a></div></div><div class="blog-post__PostNav-sc-10ytstg-4 fUJZKo"><div class="blog-post__PostNavItemWrapper-sc-10ytstg-5 jHGbsb">이전 글<!-- -->: <a href="/posts/2020-01-07-Book-Review-Lemon/">🍋 레몬</a></div><div class="blog-post__PostNavItemWrapper-sc-10ytstg-5 jHGbsb">다음 글<!-- -->: <a href="/posts/2025-02-15-value-in-blogging/">블로깅의 가치</a></div></div></main></div><footer class="footer__ContentWrapper-sc-1j0boyw-0 gDBfVG">© 2014-<!-- -->2025<!-- --> <!-- -->Jahyun Oh<!-- --> / <a href="https://www.gatsbyjs.org">Gatsby</a>로 만듬</footer></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/2022-12-31-Retrospect/";window.___webpackCompilationHash="05635a47bff23c0ac585";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-1527b9f5e8e5e19728a1.js"],"app":["/app-74d6dd2e8e10974a1aca.js"],"component---src-pages-404-js":["/component---src-pages-404-js-4850ddac9d684ed7c36c.js"],"component---src-pages-about-js":["/component---src-pages-about-js-c25e9c2d626f72dcfb43.js"],"component---src-pages-index-js":["/component---src-pages-index-js-84da1e480ac2b5b5faf6.js"],"component---src-pages-posts-js":["/component---src-pages-posts-js-e3984c14260caaaaff37.js"],"component---src-pages-tags-js":["/component---src-pages-tags-js-ebdca468d6da0190a335.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-9782748f74dd894a080b.js"],"component---src-templates-tags-js":["/component---src-templates-tags-js-8a149e71d7322489310d.js"]};/*]]>*/</script><script src="/polyfill-1527b9f5e8e5e19728a1.js" nomodule=""></script><script src="/app-74d6dd2e8e10974a1aca.js" async=""></script><script src="/framework-de55a608e8b5563940ea.js" async=""></script><script src="/webpack-runtime-27016528fe139595e9f5.js" async=""></script></body></html>
